@@ -19,7 +19,6 @@ app.use("/assets", express.static("assets")); // to serve static files  (css, js
 app.get("/", encorder, (request, response) => {
   response.render("index");
 });
-
 app.post("/login", encorder, (request, response) => {
   response.render("login");
   console.log(request.body.name);

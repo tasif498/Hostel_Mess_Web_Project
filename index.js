@@ -4,9 +4,8 @@ const port = 3000;
 
 const mongoose = require("mongoose");
 
-const DB =
-  "mongodb+srv://hitman:zaeem123@cluster0.hdyho.mongodb.net/Hostel_Mess?retryWrites=true&w=majority";
-
+const DB = "mongodb://localhost:27017/hostel_mess";
+const User = require("./model/userSchema");
 // Connecting to MongoDB
 // creating Connection with MongoDB
 mongoose

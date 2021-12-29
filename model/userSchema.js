@@ -18,9 +18,11 @@ const userSchema = new mongoose.Schema({
   },
   mess_bill: {
     type: Number,
+    required: false,
   },
   profilePic: {
     type: String,
+    required: false,
   },
 });
 

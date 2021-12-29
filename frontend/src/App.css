@@ -1,0 +1,10 @@
+.login,
+.image {
+  min-height: 100vh;
+
+}
+.bg-image {
+  background-image: url('https://i.ytimg.com/vi/ofN-g6xc1Vw/maxresdefault.jpg');
+  background-size: cover;
+  background-position: center center;
+}

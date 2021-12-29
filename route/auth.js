@@ -1,33 +1,31 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../model/userSchema");
+const Users = require("../model/userSchema");
 router.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-router.post("/register", (req, res) => {
-  // Getting the Data while the User is Registering
+router.post("/register", async (req, res) => {
   const { name, email, password, phoneNumber } = req.body;
 
   if (!name || !email || !password || !phoneNumber) {
-    return res.status(422).json({ error: "Please Enter the fields properly" });
+    return res.status(422).json({ error: "Error in Registering User" });
   }
-  //console.log(name, email, password, phoneNumber);
-  res.send("User Registered");
-  User.findOne({ email: email }).then((userExit) => {
-    if (userExit) {
-      return res.status(400).json({ error: "User Already Exist" });
+
+  try {
+    const user = await Users.findOne({ email: email });
+    if (user) {
+      return res.status(422).json({ error: "User Already Exists" });
     }
-    const user = new User({ name, email, phoneNumber, password });
-    user
-      .save()
-      .then((user) => {
-        res.status(201).json({ message: "User Created Successfully" });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: "Error in Creating User" });
-      });
-  });
+    const newUser = new Users({ name, email, password, phoneNumber });
+    await newUser.save();
+    res.json({ message: "User Registered Successfully" });
+    console.log(
+      `User => ${name}  using Email => ${email}Registered Successfully`
+    );
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;

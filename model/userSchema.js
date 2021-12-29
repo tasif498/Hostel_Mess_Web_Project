@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   phoneNumber: {
-    type: String,
+    type: Number,
     required: true,
   },
   mess_bill: {
